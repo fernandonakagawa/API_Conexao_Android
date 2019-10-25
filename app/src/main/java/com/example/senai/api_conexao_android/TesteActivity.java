@@ -8,6 +8,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.util.HashMap;
+
 public class TesteActivity extends AppCompatActivity {
 
     private EditText etTeste;
@@ -24,6 +26,9 @@ public class TesteActivity extends AppCompatActivity {
 
     public void enviarParaPHP(View view) {
         String s = etTeste.getText().toString();
-
+        HashMap<String,String> hm = new HashMap();
+        hm.put("comando", "teste");
+        hm.put("valor", s);
+        ControleDadosSingleton.getInstance().enviarRequisicao(this,this.pbTeste,hm);
     }
 }
