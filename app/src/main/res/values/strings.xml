@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">API_Conexao_Android</string>
+    <string name="bemvindo">Bem vindo à API de conexão do Android com o PHP.
+        Esta API visa simplificar a conexão com o php e posteriormente com o MySQL.
+        Modificações nesse projeto:
+        AndroidManifest.xml:
+        Adicionado permissão para uso da Internet e android:name="com.example.senai.api_conexao_android.AppController"
+        Adicionado a classe AppController
+        Autor: Fernando Nakagawa</string>
+    <string name="teste">Teste de Conexão</string>
+    <string name="enviarDados">Envio de Dados</string>
+    <string name="receber">Recebimento de Dados</string>
+    <string name="hintTeste">Digite um texto para enviar para o PHP. Ele deverá voltar duplicado.</string>
+    <string name="enviar">Enviar</string>
+    <string name="resultadoDeveAparecerAqui">O resultado deve aparecer aqui.</string>
 </resources>
