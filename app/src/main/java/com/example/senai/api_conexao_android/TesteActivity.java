@@ -34,6 +34,12 @@ public class TesteActivity extends AppCompatActivity  {
 
     public void enviar(View view) {
         String s = etTeste.getText().toString();
+        this.pbTeste.setVisibility(ProgressBar.VISIBLE);
         this.testeController.enviarParaPHP(s, this.pbTeste);
+    }
+
+    public void receberResposta(String resposta){
+        this.pbTeste.setVisibility(ProgressBar.GONE);
+        this.tvTeste.setText(resposta);
     }
 }

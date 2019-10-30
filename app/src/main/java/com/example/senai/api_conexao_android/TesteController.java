@@ -13,6 +13,7 @@ import java.util.HashMap;
 public class TesteController implements IDadosEventListener {
     AppModelSingleton appModelSingleton;
     Context appContext;
+    IDadosEventListener mListenerView;
 
     public TesteController(Context appContext) {
         this.appContext = appContext;
@@ -32,5 +33,7 @@ public class TesteController implements IDadosEventListener {
     @Override
     public void eventoRetorno() {
         Log.d(this.getClass().toString(), "Evento Retornou!");
+
+
     }
 }

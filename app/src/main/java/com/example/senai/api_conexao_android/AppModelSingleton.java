@@ -16,7 +16,7 @@ import java.util.Map;
 class AppModelSingleton implements Response.Listener, Response.ErrorListener{
 
     private final String URL =
-            "http://192.168.15.2:443/android/processaandroid.php";
+            "http://10.0.2.2/android/processaandroid.php";
     private ProgressBar pb;
     private Context ctx;
     private static final AppModelSingleton ourInstance = new AppModelSingleton();
@@ -60,7 +60,8 @@ class AppModelSingleton implements Response.Listener, Response.ErrorListener{
             Toast.makeText(ctx, "Erro na conexão!",
                     Toast.LENGTH_SHORT).show();
         }
-        Log.e(this.getClass().toString(), "Erro na conexão!");
+        Log.e(this.getClass().toString(), "Erro na conexão!" + error.toString() +
+                " " + error.getNetworkTimeMs());
     }
 
     @Override
@@ -77,6 +78,7 @@ class AppModelSingleton implements Response.Listener, Response.ErrorListener{
         //callback síncrono do método registrado
         if(this.mListener != null){
             mListener.eventoRetorno();
+            Log.d(this.getClass().toString(), "Executando mListener" + mListener.toString());
         }
     }
 }
