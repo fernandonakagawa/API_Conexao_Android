@@ -11,24 +11,19 @@ import java.util.HashMap;
  * Classe do tipo CONTROLLER - liga a interface do usuário com o controle de dados
  * do tipo MODEL (AppModelSingleton.java) é a camada do \"meio\"
  */
-public class TesteController implements IDadosEventListener {
-    AppModelSingleton appModelSingleton;
-    Context appContext;
-    IDadosEventListener mListenerView;
+public class TesteController extends AbstractController implements IEnviadorTextoSimplesPHP {
 
     public TesteController(Context appContext) {
-        this.appContext = appContext;
-        //o registro de callback da view é feito por essa linha automaticamente
-        this.mListenerView = (IDadosEventListener) appContext;
-        this.appModelSingleton = AppModelSingleton.getInstance();
+        super(appContext);
     }
 
-    public void enviarParaPHP(String texto){
+    @Override
+    public void enviarParaPHP(String texto) {
         HashMap<String,String> hm = new HashMap();
         hm.put("comando", "teste");
         hm.put("valor", texto);
         AppModelSingleton.getInstance().registrarCallback(this);
-        AppModelSingleton.getInstance().enviarRequisicao(this.appContext,hm);
+        AppModelSingleton.getInstance().enviarRequisicao(this.getAppContext(),hm);
     }
 
     /**
@@ -41,14 +36,14 @@ public class TesteController implements IDadosEventListener {
     @Override
     public void eventoRetornouOk(String response) {
         Log.d(this.getClass().toString(), "Evento Retornou!" + response);
-        mListenerView.eventoRetornouOk(response);
+        this.getmListenerView().eventoRetornouOk(response);
 
     }
 
     @Override
     public void eventoRetornouErro(VolleyError error) {
         Log.d(this.getClass().toString(), "Evento Retornou erro!" + error.toString());
-        mListenerView.eventoRetornouErro(error);
+        this.getmListenerView().eventoRetornouErro(error);
     }
 
 }

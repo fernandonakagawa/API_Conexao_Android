@@ -29,6 +29,7 @@
                 android:textSize="24sp"
                 android:text="@string/cpf"/>
             <EditText
+                android:id="@+id/et_cpf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_digite_cpf"/>
@@ -39,6 +40,7 @@
                 android:textSize="24sp"
                 android:text="@string/nome"/>
             <EditText
+                android:id="@+id/et_nome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_digite_nome"/>
@@ -50,6 +52,7 @@
                 android:textSize="24sp"
                 android:text="@string/endereco"/>
             <EditText
+                android:id="@+id/et_endereco"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_digite_endereco"/>
@@ -60,16 +63,30 @@
                 android:textSize="24sp"
                 android:text="@string/telefone"/>
             <EditText
+                android:id="@+id/et_telefone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_digite_telefone"/>
 
             <Button
-                android:layout_marginTop="20dp"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="24sp"
-                android:text="@string/enviar"/>
+                android:text="@string/enviar"
+                android:onClick="enviar"/>
+            <ProgressBar
+                android:id="@+id/pb_inserir"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
+            <TextView
+                android:id="@+id/tv_resultado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:text="@string/resposta"/>
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

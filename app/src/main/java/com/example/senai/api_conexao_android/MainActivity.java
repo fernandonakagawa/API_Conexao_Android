@@ -20,7 +20,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void irParaEnvio(View view) {
-
+        Intent i = new Intent(this, InserirActivity.class);
+        startActivity(i);
     }
 
     public void irParaRecebimento(View view) {

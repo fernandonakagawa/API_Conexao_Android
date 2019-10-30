@@ -5,6 +5,7 @@ $usuario = "root";
 $senha = "senai";
 $banco = "crm";
 	
+
 $con = new PDO("mysql:host=$servidor;dbname=$banco", "$usuario", "$senha"); 
 
 $conexao = mysqli_connect($servidor, $usuario,
@@ -20,6 +21,15 @@ if($comando === "teste"){
 	//enviar duplicado de volta para o android
 	echo("$valor $valor");
 }
+else if($comando == 'inserir'){
+	/*$resultado = mysqli_query($conexao, 
+		"INSERT INTO clientes 
+		(nome,cpf,sexo,endereco,cidade,estado,telefone)
+		VALUES (\"$nome\", \"$cpf\",\"$sexo\",
+			\"$endereco\", \"$cidade\",\"$estado\",
+			\"$telefone\") ");*/
+			echo($_POST["nome"]);
+}
 
 function verificaValorPost($var){
 	if(!isset($_POST["$var"])){
@@ -27,6 +37,7 @@ function verificaValorPost($var){
 	}
 	return $_POST["$var"];
 }
+
 /*
 $isDebug = false;
 $jsonArray = array();

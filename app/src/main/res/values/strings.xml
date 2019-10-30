@@ -22,4 +22,5 @@
     <string name="hint_digite_telefone">Digite o telefone</string>
     <string name="cpf">CPF:</string>
     <string name="hint_digite_cpf">Digite o CPF.</string>
+    <string name="resposta">Resposta do sistema</string>
 </resources>
