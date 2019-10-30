@@ -8,12 +8,14 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.android.volley.VolleyError;
+
 import java.util.HashMap;
 
 /**
  * Classe do tipo VIEW - apenas realizar funcionaciolidades relacionadas à interface gráfica e UX
  */
-public class TesteActivity extends AppCompatActivity  {
+public class TesteActivity extends AppCompatActivity  implements IDadosEventListener{
 
     private TesteController testeController;
 
@@ -35,11 +37,18 @@ public class TesteActivity extends AppCompatActivity  {
     public void enviar(View view) {
         String s = etTeste.getText().toString();
         this.pbTeste.setVisibility(ProgressBar.VISIBLE);
-        this.testeController.enviarParaPHP(s, this.pbTeste);
+        this.testeController.enviarParaPHP(s);
     }
 
-    public void receberResposta(String resposta){
+    @Override
+    public void eventoRetornouOk(String response) {
         this.pbTeste.setVisibility(ProgressBar.GONE);
-        this.tvTeste.setText(resposta);
+        this.tvTeste.setText(response);
+    }
+
+    @Override
+    public void eventoRetornouErro(VolleyError error) {
+        this.pbTeste.setVisibility(ProgressBar.GONE);
+        this.tvTeste.setText(error.toString());
     }
 }

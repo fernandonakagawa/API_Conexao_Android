@@ -17,7 +17,6 @@ class AppModelSingleton implements Response.Listener, Response.ErrorListener{
 
     private final String URL =
             "http://10.0.2.2:8080/android/processaandroid.php";
-    private ProgressBar pb;
     private Context ctx;
     private static final AppModelSingleton ourInstance = new AppModelSingleton();
 
@@ -30,15 +29,18 @@ class AppModelSingleton implements Response.Listener, Response.ErrorListener{
     private AppModelSingleton() {
     }
 
-    public void registrarEvento(IDadosEventListener mListener){
+    static AppModelSingleton getInstance(IDadosEventListener mListener){
+        ourInstance.mListener = mListener;
+        return ourInstance;
+    }
+
+    public void registrarCallback(IDadosEventListener mListener){
         this.mListener = mListener;
         Log.d(this.getClass().toString(), "Evento Registrado " + mListener.getClass());
     }
 
-    public void enviarRequisicao(Context ctx, ProgressBar pb, final HashMap<String,String> dados){
+    public void enviarRequisicao(Context ctx, final HashMap<String,String> dados){
         this.ctx = ctx;
-        this.pb = pb;
-        this.pb.setVisibility(ProgressBar.VISIBLE);
         StringRequest sr = new StringRequest(Request.Method.POST, URL,
                 this, this) {
             @Override
@@ -53,22 +55,17 @@ class AppModelSingleton implements Response.Listener, Response.ErrorListener{
 
     @Override
     public void onErrorResponse(VolleyError error) {
-        if(this.pb != null){
-            this.pb.setVisibility(ProgressBar.GONE);
-        }
         if(this.ctx != null) {
             Toast.makeText(ctx, "Erro na conexão!",
                     Toast.LENGTH_SHORT).show();
         }
+        mListener.eventoRetornouErro(error);
         Log.e(this.getClass().toString(), "Erro na conexão!" + error.toString() +
                 " " + error.getNetworkTimeMs());
     }
 
     @Override
     public void onResponse(Object response) {
-        if(this.pb != null){
-            this.pb.setVisibility(ProgressBar.GONE);
-        }
         if(this.ctx != null) {
             Toast.makeText(ctx, String.valueOf(response),
                     Toast.LENGTH_SHORT).show();
@@ -77,7 +74,7 @@ class AppModelSingleton implements Response.Listener, Response.ErrorListener{
 
         //callback síncrono do método registrado
         if(this.mListener != null){
-            mListener.eventoRetorno();
+            mListener.eventoRetornouOk(response.toString());
             Log.d(this.getClass().toString(), "Executando mListener" + mListener.toString());
         }
     }
