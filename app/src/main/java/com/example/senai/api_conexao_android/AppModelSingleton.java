@@ -13,19 +13,26 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-class ControleDadosSingleton implements Response.Listener, Response.ErrorListener{
+class AppModelSingleton implements Response.Listener, Response.ErrorListener{
 
     private final String URL =
-            "http://172.31.0.122:8080/android/processaandroid.php";
+            "http://192.168.15.2:443/android/processaandroid.php";
     private ProgressBar pb;
     private Context ctx;
-    private static final ControleDadosSingleton ourInstance = new ControleDadosSingleton();
+    private static final AppModelSingleton ourInstance = new AppModelSingleton();
 
-    static ControleDadosSingleton getInstance() {
+    private IDadosEventListener mListener;
+
+    static AppModelSingleton getInstance() {
         return ourInstance;
     }
 
-    private ControleDadosSingleton() {
+    private AppModelSingleton() {
+    }
+
+    public void registrarEvento(IDadosEventListener mListener){
+        this.mListener = mListener;
+        Log.d(this.getClass().toString(), "Evento Registrado " + mListener.getClass());
     }
 
     public void enviarRequisicao(Context ctx, ProgressBar pb, final HashMap<String,String> dados){
@@ -41,6 +48,7 @@ class ControleDadosSingleton implements Response.Listener, Response.ErrorListene
                 return params;
             }
         };
+        AppController.getInstancia().adicionarParaFila(sr);
     }
 
     @Override
@@ -66,5 +74,9 @@ class ControleDadosSingleton implements Response.Listener, Response.ErrorListene
         }
         Log.d(this.getClass().toString(), String.valueOf(response));
 
+        //callback síncrono do método registrado
+        if(this.mListener != null){
+            mListener.eventoRetorno();
+        }
     }
 }

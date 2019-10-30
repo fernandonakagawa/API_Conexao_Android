@@ -10,25 +10,30 @@ import android.widget.TextView;
 
 import java.util.HashMap;
 
-public class TesteActivity extends AppCompatActivity {
+/**
+ * Classe do tipo VIEW - apenas realizar funcionaciolidades relacionadas à interface gráfica e UX
+ */
+public class TesteActivity extends AppCompatActivity  {
+
+    private TesteController testeController;
 
     private EditText etTeste;
     private TextView tvTeste;
     private ProgressBar pbTeste;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teste);
+        this.testeController = new TesteController(this);
         this.etTeste = findViewById(R.id.etTeste);
         this.tvTeste = findViewById(R.id.tvTexto);
         this.pbTeste = findViewById(R.id.pbTeste);
     }
 
-    public void enviarParaPHP(View view) {
+    public void enviar(View view) {
         String s = etTeste.getText().toString();
-        HashMap<String,String> hm = new HashMap();
-        hm.put("comando", "teste");
-        hm.put("valor", s);
-        ControleDadosSingleton.getInstance().enviarRequisicao(this,this.pbTeste,hm);
+        this.testeController.enviarParaPHP(s, this.pbTeste);
     }
 }
