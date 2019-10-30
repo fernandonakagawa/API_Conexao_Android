@@ -26,10 +26,12 @@ DROP TABLE IF EXISTS `cliente`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `cliente` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `cpf` char(11) NOT NULL, 
   `nome` varchar(255) NOT NULL,
   `endereco` varchar(255) DEFAULT NULL,
   `telefone` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE (`cpf`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -39,7 +41,7 @@ CREATE TABLE `cliente` (
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES (1,'Selipe','Rua Belem','32323232'),(2,'Fariana Narques','Rua Tiradentes','4322222');
+INSERT INTO `cliente` (cpf, nome, endereco, telefone) VALUES ('12345678910','Selipe','Rua Belem','32323232'),('98765432100','Fariana Narques','Rua Tiradentes','4322222');
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,5 +53,3 @@ UNLOCK TABLES;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2019-10-25 17:19:54
