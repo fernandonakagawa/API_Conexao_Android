@@ -11,7 +11,9 @@ import java.util.HashMap;
  * Classe do tipo CONTROLLER - liga a interface do usuário com o controle de dados
  * do tipo MODEL (AppModelSingleton.java) é a camada do \"meio\"
  */
-public class TesteController extends AbstractController implements IEnviadorTextoSimplesPHP {
+public class TesteController
+        extends AbstractController
+        implements IEnviadorTextoSimplesPHP {
 
     public TesteController(Context appContext) {
         super(appContext);
@@ -22,8 +24,10 @@ public class TesteController extends AbstractController implements IEnviadorText
         HashMap<String,String> hm = new HashMap();
         hm.put("comando", "teste");
         hm.put("valor", texto);
-        AppModelSingleton.getInstance().registrarCallback(this);
-        AppModelSingleton.getInstance().enviarRequisicao(this.getAppContext(),hm);
+        AppModelSingleton.getInstance().
+                registrarCallback(this);
+        AppModelSingleton.getInstance().
+                enviarRequisicao(this.getAppContext(),hm);
     }
 
     /**

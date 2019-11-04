@@ -15,7 +15,8 @@ import java.util.HashMap;
 /**
  * Classe do tipo VIEW - apenas realizar funcionaciolidades relacionadas à interface gráfica e UX
  */
-public class TesteActivity extends AppCompatActivity  implements IDadosEventListener{
+public class TesteActivity extends AppCompatActivity
+        implements IDadosEventListener{
 
     private TesteController testeController;
 
