@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.android.volley.VolleyError;
@@ -17,6 +18,7 @@ public class InserirActivity extends AppCompatActivity implements  IDadosEventLi
     private EditText etNome, etCpf, etEndereco, etTelefone;
     private ProgressBar pb;
     private TextView tvResultado;
+    //private RadioGroup rgSexo;
 
     private InserirController inserirController;
     @Override
@@ -30,12 +32,14 @@ public class InserirActivity extends AppCompatActivity implements  IDadosEventLi
         this.etTelefone = findViewById(R.id.et_telefone);
         this.pb = findViewById(R.id.pb_inserir);
         this.tvResultado = findViewById(R.id.tv_resultado);
+        //this.rgSexo = findViewById(R.id.rg_sexo);
     }
 
     public void enviar(View view) {
+        //String sexo = (this.rgSexo.getCheckedRadioButtonId() == R.id.sexo_m?"M":"F");
         HashMap<String,String> hm = new HashMap<>();
-        hm.put("nome", etNome.getText().toString());
         hm.put("cpf", etCpf.getText().toString());
+        hm.put("nome", etNome.getText().toString());
         hm.put("endereco", etEndereco.getText().toString());
         hm.put("telefone", etTelefone.getText().toString());
 

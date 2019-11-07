@@ -23,4 +23,5 @@
     <string name="cpf">CPF:</string>
     <string name="hint_digite_cpf">Digite o CPF.</string>
     <string name="resposta">Resposta do sistema</string>
+    <string name="sexo">Sexo:</string>
 </resources>

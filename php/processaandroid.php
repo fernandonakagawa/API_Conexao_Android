@@ -1,13 +1,13 @@
 <?php
 //CONECTAR AO BANCO!
 $servidor = "127.0.0.1:3306";
-$usuario = "root";
+$usuario = "crm_admin";
 $senha = "senai";
 $banco = "crm";
 	
 
-$con = new PDO("mysql:host=$servidor;dbname=$banco", "$usuario", "$senha"); 
-
+$pdo = new PDO("mysql:host=$servidor;dbname=$banco", "$usuario", "$senha"); 
+$pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 $conexao = mysqli_connect($servidor, $usuario,
 	$senha, $banco);
 if(!$conexao){
@@ -28,7 +28,38 @@ else if($comando == 'inserir'){
 		VALUES (\"$nome\", \"$cpf\",\"$sexo\",
 			\"$endereco\", \"$cidade\",\"$estado\",
 			\"$telefone\") ");*/
-			echo($_POST["nome"]);
+			//echo($_POST["nome"]);
+	$cpf = verificaValorPost('cpf');
+	$nome = verificaValorPost('nome');
+	$endereco = verificaValorPost('endereco');
+	$telefone = verificaValorPost('telefone');
+	$data = [
+		[$cpf, $nome, $endereco, $telefone]
+	];
+	$sql = "INSERT INTO cliente
+		(cpf,nome,endereco,telefone) VALUES (?,?,?,?)";
+	$stmt= $pdo->prepare($sql);
+	try {
+		$pdo->beginTransaction();
+		foreach ($data as $row)
+		{
+			$stmt->execute($row);
+		}
+		$pdo->commit();
+		echo("insert ok");
+	}catch (Exception $e){
+		$pdo->rollback();
+		echo("insert erro ".$e->getCode());
+		switch($e->getCode()){
+			case 23000:
+				echo(" CPF já existente!");
+			break;
+			case 22001:
+				echo(" Algum campo excedeu o limite de caracteres");
+			break;
+		}
+		//throw $e->getCode();
+	}
 }
 
 function verificaValorPost($var){
