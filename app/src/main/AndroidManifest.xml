@@ -21,7 +21,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".TesteActivity" />
-        <activity android:name=".InserirActivity"></activity>
+        <activity android:name=".InserirActivity" />
+        <activity android:name=".BuscarActivity"></activity>
     </application>
 
 </manifest>
