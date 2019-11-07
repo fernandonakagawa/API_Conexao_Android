@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void irParaRecebimento(View view) {
-
+        Intent i = new Intent(this, BuscarActivity.class);
+        startActivity(i);
     }
 }

@@ -25,11 +25,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_digite_nome"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/bt_buscar"/>
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bt_buscar"
+                    android:onClick="enviar"/>
+                <ProgressBar
+                    android:id="@+id/pbBusca"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"/>
+            </LinearLayout>
             <TableLayout
                 android:id="@+id/tb_buscar"
                 android:layout_width="match_parent"

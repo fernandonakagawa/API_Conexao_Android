@@ -54,5 +54,6 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-CREATE USER IF NOT EXISTS 'crm_admin'@'localhost' IDENTIFIED BY '42' ;
-alter user 'crm_admin'@'localhost' identified with mysql_native_password by '42';
+CREATE USER IF NOT EXISTS 'crm_admin'@'localhost' IDENTIFIED BY 'senai' ;
+alter user 'crm_admin'@'localhost' identified with mysql_native_password by 'senai';
+GRANT ALL PRIVILEGES ON crm.* TO 'crm_admin'@'localhost';
