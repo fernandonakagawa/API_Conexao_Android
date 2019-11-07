@@ -27,4 +27,7 @@
     <string name="bt_buscar">Buscar</string>
     <string name="buscarNome">Buscar nome:</string>
     <string name="tb_cpf">CPF</string>
+    <string name="tb_nome">Nome</string>
+    <string name="tb_endereco">Endereço</string>
+    <string name="tb_telefone">Telefone</string>
 </resources>

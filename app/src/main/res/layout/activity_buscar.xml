@@ -31,6 +31,7 @@
                 android:text="@string/bt_buscar"/>
 
             <TableLayout
+                android:id="@+id/tb_buscar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TableRow
@@ -38,9 +39,31 @@
                     android:layout_height="wrap_content"
                     android:padding="5dip">
                     <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="@string/tb_cpf"
+                        android:layout_weight="10"
+                    />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tb_nome"
+                        android:layout_weight="10"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tb_endereco"
+                        android:layout_weight="6"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tb_telefone"
+                        android:layout_weight="6"
                         />
                 </TableRow>
+
             </TableLayout>
         </LinearLayout>
 
