@@ -38,7 +38,8 @@ public class TesteController
      * @param response
      */
     @Override
-    public void eventoRetornouOk(String response) {
+    public void eventoRetornouOk(Object response) {
+        String resposta = String.valueOf(response);
         Log.d(this.getClass().toString(), "Evento Retornou!" + response);
         this.getmListenerView().eventoRetornouOk(response);
 

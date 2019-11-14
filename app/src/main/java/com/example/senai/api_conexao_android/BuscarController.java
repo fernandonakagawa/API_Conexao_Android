@@ -5,6 +5,11 @@ import android.util.Log;
 
 import com.android.volley.VolleyError;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class BuscarController extends AbstractController implements IEnviadorTextoSimplesPHP {
@@ -24,9 +29,28 @@ public class BuscarController extends AbstractController implements IEnviadorTex
     }
 
     @Override
-    public void eventoRetornouOk(String response) {
-        Log.d(this.getClass().toString(), "Evento Retornou!" + response);
-        this.getmListenerView().eventoRetornouOk(response);
+    public void eventoRetornouOk(Object response) {
+        String resposta = String.valueOf(response);
+        Log.d(this.getClass().toString(), "Evento Retornou!" + resposta);
+        JSONArray jsonArray;
+        Cliente c = null;
+        ArrayList<Cliente> clientes = new ArrayList<>();
+        try{
+            jsonArray = new JSONArray(resposta);
+            for (int i = 0;  i < jsonArray.length(); i++){
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                String cpf = jsonObject.getString("cpf");
+                String nome = jsonObject.getString("nome");
+                String endereco = jsonObject.getString("endereco");
+                String telefone = jsonObject.getString("telefone");
+                c = new Cliente(cpf, nome, endereco, telefone);
+                clientes.add(c);
+            }
+        }catch(JSONException e){
+            Log.d(this.getClass().toString(), "Erro de parser JSON!" + e.toString());
+        }
+
+        this.getmListenerView().eventoRetornouOk(clientes);
     }
 
     @Override

@@ -20,8 +20,9 @@ public class InserirController extends AbstractController implements IEnviadorHa
     }
 
     @Override
-    public void eventoRetornouOk(String response) {
-        Log.d(this.getClass().toString(), "Evento Retornou!" + response);
+    public void eventoRetornouOk(Object response) {
+        String resposta = String.valueOf(response);
+        Log.d(this.getClass().toString(), "Evento Retornou!" + resposta);
         this.getmListenerView().eventoRetornouOk(response);
     }
 

@@ -2,7 +2,7 @@ package com.example.senai.api_conexao_android;
 
 import com.android.volley.VolleyError;
 
-public interface IDadosEventListener {
-    void eventoRetornouOk(String response);
+public interface IDadosEventListener<T> {
+    void eventoRetornouOk(T response);
     void eventoRetornouErro(VolleyError error);
 }

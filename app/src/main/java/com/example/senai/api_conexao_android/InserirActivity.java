@@ -47,9 +47,9 @@ public class InserirActivity extends AppCompatActivity implements  IDadosEventLi
         this.inserirController.enviarParaPHP(hm);
     }
     @Override
-    public void eventoRetornouOk(String response) {
+    public void eventoRetornouOk(Object response) {
         this.pb.setVisibility(ProgressBar.GONE);
-        this.tvResultado.setText(response);
+        this.tvResultado.setText(String.valueOf(response));
     }
 
     @Override

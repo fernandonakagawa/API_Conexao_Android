@@ -42,9 +42,9 @@ public class TesteActivity extends AppCompatActivity
     }
 
     @Override
-    public void eventoRetornouOk(String response) {
+    public void eventoRetornouOk(Object response) {
         this.pbTeste.setVisibility(ProgressBar.GONE);
-        this.tvTeste.setText(response);
+        this.tvTeste.setText(String.valueOf(response));
     }
 
     @Override
