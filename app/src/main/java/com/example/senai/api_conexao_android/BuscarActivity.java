@@ -40,40 +40,53 @@ public class BuscarActivity extends AppCompatActivity implements IDadosEventList
         String s = etBusca.getText().toString();
         this.pbBusca.setVisibility(ProgressBar.VISIBLE);
         this.buscarController.enviarParaPHP(s);
+        tbResultado.removeAllViewsInLayout();
+
     }
 
     @Override
     public void eventoRetornouOk(Object response) {
         this.pbBusca.setVisibility(ProgressBar.GONE);
-        ArrayList<Cliente> clientes = new ArrayList<>();
-        TableRow tr;
+
+        adicionarLinha("Cpf", "Nome", "Endereço", "Telefone");
+
+        ArrayList<Cliente> clientes = (ArrayList<Cliente>)response;
+
         Log.d(this.getClass().toString(), "Clientes: " + clientes.toString());
         for(Cliente c: clientes){
             Log.d(this.getClass().toString(), "Cliente: " + c.getNome());
-            tr = new TableRow(this);
-            TextView tvCpf = new TextView(this);
-            tvCpf.setText(c.getCpf());
-            tvCpf.setPadding(2, 0, 5, 0);
-            tvCpf.setTextColor(Color.BLACK);
-            tr.addView(tvCpf);
-            TextView tvNome = new TextView(this);
-            tvNome.setText(c.getNome());
-            tvNome.setPadding(2, 0, 5, 0);
-            tvNome.setTextColor(Color.BLACK);
-            tr.addView(tvNome);
-            TextView tvEndereco = new TextView(this);
-            tvEndereco.setText(c.getEndereco());
-            tvEndereco.setPadding(2, 0, 5, 0);
-            tvEndereco.setTextColor(Color.BLACK);
-            tr.addView(tvEndereco);
-            TextView tvTelefone = new TextView(this);
-            tvTelefone.setText(c.getTelefone());
-            tvTelefone.setPadding(2, 0, 5, 0);
-            tvTelefone.setTextColor(Color.BLACK);
-            tr.addView(tvTelefone);
-            tbResultado.addView(tr);
+            adicionarLinha(c.getCpf(), c.getNome(), c.getEndereco(), c.getTelefone());
         }
 
+    }
+
+    private void adicionarLinha(String cpf, String nome, String endereco, String telefone) {
+        TableRow tr = new TableRow(this);
+        TextView tvCpf = new TextView(this);
+        tvCpf.setText(cpf);
+        tvCpf.setPadding(2, 0, 5, 0);
+        tvCpf.setTextColor(Color.BLACK);
+        tr.addView(tvCpf);
+
+        TextView tvNome = new TextView(this);
+        tvNome.setText(nome);
+        tvNome.setPadding(2, 0, 5, 0);
+        tvNome.setTextColor(Color.BLACK);
+        tr.addView(tvNome);
+
+        TextView tvEndereco = new TextView(this);
+        tvEndereco.setText(endereco);
+        tvEndereco.setPadding(2, 0, 5, 0);
+        tvEndereco.setTextColor(Color.BLACK);
+        tr.addView(tvEndereco);
+
+        TextView tvTelefone = new TextView(this);
+        tvTelefone.setText(telefone);
+        tvTelefone.setPadding(2, 0, 5, 0);
+        tvTelefone.setTextColor(Color.BLACK);
+        tr.addView(tvTelefone);
+
+        tbResultado.addView(tr);
     }
 
     @Override

@@ -56,10 +56,9 @@ else if($comando == 'inserir'){
 }
 else if($comando == "buscarNome"){
 	$nome = verificaValorPost('valor');
-	$stmt = $pdo->query("SELECT * FROM crm.cliente "); 
-	//WHERE 'nome' LIKE '%?%' LIMIT 10 
-	$limit = 10;
-	$stmt->execute([$nome]);
+	$stmt = $pdo->prepare("SELECT * FROM crm.cliente WHERE UPPER (nome) LIKE '%".$nome."%' LIMIT 10 "); 
+
+	$stmt->execute();
 	$registros = array();
 	while ($row = $stmt->fetch()) {
 		$linha2 = array(
