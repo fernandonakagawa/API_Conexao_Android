@@ -30,4 +30,5 @@
     <string name="tb_nome">Nome</string>
     <string name="tb_endereco">Endereço</string>
     <string name="tb_telefone">Telefone</string>
+    <string name="erro_busca">Erro na busca!</string>
 </resources>

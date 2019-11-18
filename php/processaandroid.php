@@ -22,13 +22,6 @@ if($comando === "teste"){
 	echo("$valor $valor");
 }
 else if($comando == 'inserir'){
-	/*$resultado = mysqli_query($conexao, 
-		"INSERT INTO clientes 
-		(nome,cpf,sexo,endereco,cidade,estado,telefone)
-		VALUES (\"$nome\", \"$cpf\",\"$sexo\",
-			\"$endereco\", \"$cidade\",\"$estado\",
-			\"$telefone\") ");*/
-			//echo($_POST["nome"]);
 	$cpf = verificaValorPost('cpf');
 	$nome = verificaValorPost('nome');
 	$endereco = verificaValorPost('endereco');
@@ -60,6 +53,22 @@ else if($comando == 'inserir'){
 		}
 		//throw $e->getCode();
 	}
+}
+else if($comando == "buscarNome"){
+	$nome = verificaValorPost('valor');
+	$stmt = $pdo->query("SELECT * FROM crm.cliente "); //WHERE 'nome' LIKE '%?%' LIMIT 10 
+	$limit = 10;
+	$stmt->execute([$nome]);
+	$registros = array();
+	while ($row = $stmt->fetch()) {
+		$linha2 = array(
+			'nome'=>$row['nome'], 
+			'cpf'=>$row['cpf'],
+			'endereco' =>$row['endereco'],
+			'telefone'=>$row['telefone']);
+		array_push($registros, $linha2);
+	}
+	echo json_encode($registros);
 }
 
 function verificaValorPost($var){
